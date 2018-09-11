@@ -1,23 +1,28 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableHighlight} from 'react-native';
 
 import {capitalizeFirstLetter} from '../util';
 
 const PeopleListItem = props => {
-    const { people } = props;
+    const { people, navigateToPeopleDetail } = props;
     const { title, first, last }  = people.name;
     return(
-        <View key={ first } style = {styles.line}>
-            <Image style={styles.avatar} source={{uri: people.picture.thumbnail}} />
-            <Text style={styles.lineText}>
-                {`${
-                    capitalizeFirstLetter(title)
-                } ${
-                    capitalizeFirstLetter(first)
-                } ${
-                    capitalizeFirstLetter(last)}`}
-            </Text>
-        </View>
+        <TouchableHighlight onPress={() => {
+            console.log('Colocou em mim!!!', first);
+            navigateToPeopleDetail();
+        }}>
+            <View style = {styles.line}>
+                <Image style={styles.avatar} source={{uri: people.picture.thumbnail}} />
+                <Text style={styles.lineText}>
+                    {`${
+                        capitalizeFirstLetter(title)
+                    } ${
+                        capitalizeFirstLetter(first)
+                    } ${
+                        capitalizeFirstLetter(last)}`}
+                </Text>
+            </View>
+        </TouchableHighlight>
     );
 }
 
