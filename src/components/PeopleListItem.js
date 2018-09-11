@@ -9,7 +9,7 @@ const PeopleListItem = props => {
     return(
         <TouchableHighlight onPress={() => {
             console.log('Colocou em mim!!!', first);
-            navigateToPeopleDetail();
+            navigateToPeopleDetail({people});
         }}>
             <View style = {styles.line}>
                 <Image style={styles.avatar} source={{uri: people.picture.thumbnail}} />

@@ -3,12 +3,24 @@ import { StackNavigator } from 'react-navigation';
 import PeoplePage from './src/pages/PeoplesPage';
 import PeopleDetailPage from './src/pages/PeopleDetailPage';
 
+import { capitalizeFirstLetter} from './src/util';
+
 export default StackNavigator({
   'Main': {
       screen: PeoplePage
   },
   'PeopleDetail': {
-    screen: PeopleDetailPage
+    screen: PeopleDetailPage,
+    navigationOptions: ({ navigation}) =>{
+      const peopleName = capitalizeFirstLetter(navigation.state.params.people.name.first);
+      return({
+        title: peopleName,
+        headerTitleStyle: {
+          color: 'white',
+          fontSize: 30,
+        }
+      });
+    }
   }
 },{
   navigationOptions: {
